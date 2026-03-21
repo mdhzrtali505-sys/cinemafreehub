@@ -166,9 +166,8 @@ export default function Index() {
               onToggleWatchlist={toggleWatchlist}
               showRank
             />
-            {/* Ad Banner */}
             <div className="flex justify-center my-6">
-              <AdBanner width={728} height={90} className="rounded-xl" />
+              <AdSlotBanner slotName="between_rows_1" className="rounded-xl" />
             </div>
             <ContentRow
               title="🎬 Now Playing"
@@ -186,9 +185,8 @@ export default function Index() {
               onPlay={handlePlay}
               onToggleWatchlist={toggleWatchlist}
             />
-            {/* Ad Banner */}
             <div className="flex justify-center my-6">
-              <AdBanner width={468} height={60} className="rounded-xl" />
+              <AdSlotBanner slotName="between_rows_2" className="rounded-xl" />
             </div>
             <ContentRow
               title="📺 Trending TV Shows"
@@ -206,6 +204,9 @@ export default function Index() {
               onPlay={handlePlay}
               onToggleWatchlist={toggleWatchlist}
             />
+            <div className="flex justify-center my-6">
+              <AdSlotBanner slotName="between_rows_3" className="rounded-xl" />
+            </div>
             <ContentRow
               title="🎥 Upcoming"
               icon={<Globe className="w-5 h-5 text-primary" />}
