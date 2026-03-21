@@ -38,6 +38,45 @@ export type Database = {
         }
         Relationships: []
       }
+      ad_settings: {
+        Row: {
+          ad_key: string | null
+          ad_type: string
+          created_at: string
+          height: number | null
+          id: string
+          is_enabled: boolean
+          slot_label: string
+          slot_name: string
+          updated_at: string
+          width: number | null
+        }
+        Insert: {
+          ad_key?: string | null
+          ad_type?: string
+          created_at?: string
+          height?: number | null
+          id?: string
+          is_enabled?: boolean
+          slot_label?: string
+          slot_name: string
+          updated_at?: string
+          width?: number | null
+        }
+        Update: {
+          ad_key?: string | null
+          ad_type?: string
+          created_at?: string
+          height?: number | null
+          id?: string
+          is_enabled?: boolean
+          slot_label?: string
+          slot_name?: string
+          updated_at?: string
+          width?: number | null
+        }
+        Relationships: []
+      }
       movie_clicks: {
         Row: {
           action: string
