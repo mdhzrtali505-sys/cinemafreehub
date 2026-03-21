@@ -1,23 +1,48 @@
 
 
-## পরিকল্পনা: মুভি ডাউনলোড অপশন ব্লক করা
+## পরিকল্পনা: See All ফিক্স + বাংলা সেকশন + ব্র্যান্ড রিনেম + ডাউনলোড ব্লক
 
-### সমস্যা
-ভিডিও প্লেয়ারের iframe-এ ডাউনলোড অপশন থাকতে পারে। এটি বন্ধ করতে হবে।
+### অ্যাডমিন প্যানেল অ্যাক্সেস
+আপনার ডোমেইনের পরে `/pf-ctrl-9x7k` যোগ করুন:
+```
+cinemafreehub.lovable.app/pf-ctrl-9x7k
+```
 
-### পরিবর্তন
+### সাইটের নাম
+আপনার ডোমেইন `cinemafreehub` — তাই সাইটের নাম **CinemaFreeHub** রাখলে SEO তে সবচেয়ে ভালো কাজ করবে।
 
-#### 1. `src/components/PlayerModal.tsx`
-- iframe এর `sandbox` attribute যোগ করা: `sandbox="allow-scripts allow-same-origin allow-presentation"` — এটি ডাউনলোড ও অন্যান্য অবাঞ্ছিত আচরণ সীমিত করবে
-- `allow` attribute থেকে অপ্রয়োজনীয় permissions সরানো
-- Right-click disable করার জন্য iframe এর উপরে একটি transparent overlay div রাখা যাতে ইউজার right-click করে "Save video as" অপশন না পায়
-- CSS দিয়ে `-webkit-touch-callout: none` এবং `pointer-events` কন্ট্রোল করা
+---
 
-#### 2. `index.html` (optional)
-- গ্লোবাল right-click context menu disable করার জন্য একটি ছোট স্ক্রিপ্ট যোগ করা (শুধু ভিডিও এলিমেন্টের জন্য)
+### পরিবর্তনসমূহ
 
-### টেকনিক্যাল ডিটেইল
-- যেহেতু ভিডিও একটি third-party embed (vidsrc.cc), iframe-এর ভেতরের কন্টেন্ট সরাসরি কন্ট্রোল করা যায় না
-- তবে sandbox attribute এবং overlay div দিয়ে ডাউনলোড অপশন কার্যকরভাবে ব্লক করা সম্ভব
-- **নোট:** ১০০% ডাউনলোড প্রতিরোধ করা সম্ভব না (determined user always finds a way), কিন্তু সাধারণ ইউজারদের জন্য এটি যথেষ্ট
+#### 1. ব্র্যান্ড নাম "Playflix" → "CinemaFreeHub"
+- `Navbar.tsx` — লোগো টেক্সট পরিবর্তন
+- `Footer.tsx` — ফুটার ব্র্যান্ড নাম পরিবর্তন
+- `index.html` — মেটা ট্যাগ, OG ট্যাগ, JSON-LD সব আপডেট
+
+#### 2. "See All" বাটন কার্যকর করা
+- `ContentRow.tsx` — `onSeeAll` callback prop যোগ করা, "See All" বাটনে onClick যুক্ত
+- `Index.tsx` — `seeAllCategory` state যোগ করা; See All ক্লিক করলে ঐ ক্যাটাগরির মুভি গ্রিড ভিউতে দেখানো
+
+#### 3. বাংলা কন্টেন্ট সেকশন
+- `tmdb.ts` — `discoverBangla` ফাংশন যোগ: `with_original_language=bn` ব্যবহার করে বাংলা মুভি ও টিভি ফেচ
+- `Index.tsx` — দুটি নতুন ContentRow: "🇧🇩 বাংলা সিনেমা" এবং "🇧🇩 বাংলা নাটক/সিরিজ"
+- `GenreChips.tsx` — "🇧🇩 Bangla" চিপ যোগ
+
+#### 4. ডাউনলোড ব্লক (PlayerModal)
+- `PlayerModal.tsx` — iframe এ `sandbox="allow-scripts allow-same-origin allow-presentation"` যোগ
+- iframe এর উপরে transparent overlay div রাখা যাতে right-click কাজ না করে
+- CSS `user-select: none` এবং context menu disable
+
+### ফাইল পরিবর্তন তালিকা
+| ফাইল | কাজ |
+|---|---|
+| `src/components/Navbar.tsx` | নাম CinemaFreeHub |
+| `src/components/Footer.tsx` | নাম CinemaFreeHub |
+| `index.html` | SEO মেটা ট্যাগ আপডেট |
+| `src/components/ContentRow.tsx` | onSeeAll prop যোগ |
+| `src/pages/Index.tsx` | See All লজিক + বাংলা সেকশন |
+| `src/lib/tmdb.ts` | discoverBangla ফাংশন |
+| `src/components/GenreChips.tsx` | Bangla চিপ |
+| `src/components/PlayerModal.tsx` | ডাউনলোড ব্লক |
 
