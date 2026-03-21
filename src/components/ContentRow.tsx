@@ -19,10 +19,10 @@ export default function ContentRow({ title, icon, movies, watchlist, onPlay, onT
   return (
     <div className="mb-12">
       <div className="flex justify-between items-center mb-5 px-1">
-        <h3 className="text-xl font-extrabold flex items-center gap-2.5 tracking-tight">
+        <h2 className="text-xl font-extrabold flex items-center gap-2.5 tracking-tight">
           {icon}
           {title}
-        </h3>
+        </h2>
         <button onClick={onSeeAll} className="text-[13px] font-bold text-accent flex items-center gap-1 hover:text-foreground hover:gap-2 transition-all">
           See All <ChevronRight className="w-4 h-4" />
         </button>
@@ -46,7 +46,7 @@ export default function ContentRow({ title, icon, movies, watchlist, onPlay, onT
 function RowSkeleton({ title }: { title: string }) {
   return (
     <div className="mb-12">
-      <h3 className="text-xl font-extrabold mb-5 px-1 tracking-tight">{title}</h3>
+      <h2 className="text-xl font-extrabold mb-5 px-1 tracking-tight">{title}</h2>
       <div className="flex gap-3 overflow-hidden">
         {Array.from({ length: 10 }).map((_, i) => (
           <div key={i} className="flex-shrink-0 w-[155px] aspect-[2/3] rounded-[10px] bg-surface2 relative overflow-hidden">
