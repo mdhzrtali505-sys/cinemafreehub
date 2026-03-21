@@ -14,16 +14,118 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      active_sessions: {
+        Row: {
+          created_at: string
+          current_page: string | null
+          id: string
+          last_seen: string
+          session_id: string
+        }
+        Insert: {
+          created_at?: string
+          current_page?: string | null
+          id?: string
+          last_seen?: string
+          session_id: string
+        }
+        Update: {
+          created_at?: string
+          current_page?: string | null
+          id?: string
+          last_seen?: string
+          session_id?: string
+        }
+        Relationships: []
+      }
+      movie_clicks: {
+        Row: {
+          action: string
+          created_at: string
+          id: string
+          movie_id: number
+          movie_title: string
+          session_id: string | null
+        }
+        Insert: {
+          action?: string
+          created_at?: string
+          id?: string
+          movie_id: number
+          movie_title: string
+          session_id?: string | null
+        }
+        Update: {
+          action?: string
+          created_at?: string
+          id?: string
+          movie_id?: number
+          movie_title?: string
+          session_id?: string | null
+        }
+        Relationships: []
+      }
+      page_views: {
+        Row: {
+          created_at: string
+          id: string
+          page: string
+          referrer: string | null
+          session_id: string | null
+          user_agent: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          page: string
+          referrer?: string | null
+          session_id?: string | null
+          user_agent?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          page?: string
+          referrer?: string | null
+          session_id?: string | null
+          user_agent?: string | null
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      cleanup_old_sessions: { Args: never; Returns: undefined }
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +252,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "user"],
+    },
   },
 } as const
