@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import AdBanner from "@/components/AdBanner";
+import AdSlotBanner, { RewardAdOverlay } from "@/components/AdBanner";
 import { Flame, TrendingUp, Sparkles, Film, Tv, Globe } from "lucide-react";
 import { tmdb, Movie, getTitle } from "@/lib/tmdb";
 import { trackPageView, trackMovieClick, startHeartbeat, stopHeartbeat } from "@/lib/analytics";
@@ -32,6 +32,7 @@ export default function Index() {
 
   const [modalMovie, setModalMovie] = useState<Movie | null>(null);
   const [playerMovie, setPlayerMovie] = useState<Movie | null>(null);
+  const [rewardMovie, setRewardMovie] = useState<Movie | null>(null);
 
   useEffect(() => {
     trackPageView("/");
@@ -90,7 +91,14 @@ export default function Index() {
   const handlePlay = (movie: Movie) => {
     trackMovieClick(movie.id, getTitle(movie), "play");
     setModalMovie(null);
-    setPlayerMovie(movie);
+    setRewardMovie(movie); // Show reward ad first
+  };
+
+  const handleRewardComplete = () => {
+    if (rewardMovie) {
+      setPlayerMovie(rewardMovie);
+      setRewardMovie(null);
+    }
   };
 
   const showGrid = isSearching || (activeGenre && genreMovies.length > 0);
@@ -158,9 +166,8 @@ export default function Index() {
               onToggleWatchlist={toggleWatchlist}
               showRank
             />
-            {/* Ad Banner */}
             <div className="flex justify-center my-6">
-              <AdBanner width={728} height={90} className="rounded-xl" />
+              <AdSlotBanner slotName="between_rows_1" className="rounded-xl" />
             </div>
             <ContentRow
               title="🎬 Now Playing"
@@ -178,9 +185,8 @@ export default function Index() {
               onPlay={handlePlay}
               onToggleWatchlist={toggleWatchlist}
             />
-            {/* Ad Banner */}
             <div className="flex justify-center my-6">
-              <AdBanner width={468} height={60} className="rounded-xl" />
+              <AdSlotBanner slotName="between_rows_2" className="rounded-xl" />
             </div>
             <ContentRow
               title="📺 Trending TV Shows"
@@ -198,6 +204,9 @@ export default function Index() {
               onPlay={handlePlay}
               onToggleWatchlist={toggleWatchlist}
             />
+            <div className="flex justify-center my-6">
+              <AdSlotBanner slotName="between_rows_3" className="rounded-xl" />
+            </div>
             <ContentRow
               title="🎥 Upcoming"
               icon={<Globe className="w-5 h-5 text-primary" />}
@@ -210,7 +219,20 @@ export default function Index() {
         )}
       </div>
 
+      {/* Footer ad */}
+      <div className="flex justify-center my-6 px-[4%]">
+        <AdSlotBanner slotName="footer_above" className="rounded-xl" />
+      </div>
+
       <Footer />
+
+      {/* Reward Ad Overlay */}
+      {rewardMovie && (
+        <RewardAdOverlay
+          onComplete={handleRewardComplete}
+          onSkip={handleRewardComplete}
+        />
+      )}
 
       {/* Modals */}
       <MovieModal
