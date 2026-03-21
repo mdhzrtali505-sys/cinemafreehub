@@ -53,6 +53,12 @@ export const tmdb = {
   discover: (type: "movie" | "tv", params: string = "") =>
     fetchTMDB<TMDBResponse>(`/discover/${type}?sort_by=popularity.desc${params}`),
 
+  banglaMovies: () =>
+    fetchTMDB<TMDBResponse>(`/discover/movie?sort_by=popularity.desc&with_original_language=bn`),
+
+  banglaTv: () =>
+    fetchTMDB<TMDBResponse>(`/discover/tv?sort_by=popularity.desc&with_original_language=bn`),
+
   search: (query: string) =>
     fetchTMDB<TMDBResponse>(`/search/multi?query=${encodeURIComponent(query)}`),
 

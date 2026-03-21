@@ -14,7 +14,7 @@ export default function Footer() {
           Stream your favorite movies and TV shows in HD quality. Unlimited entertainment at your fingertips.
         </p>
         <div className="text-text-tertiary text-xs">
-          © {new Date().getFullYear()} Playflix. All rights reserved. This product uses the TMDB API but is not endorsed or certified by TMDB.
+          © {new Date().getFullYear()} CinemaFreeHub. All rights reserved. This product uses the TMDB API but is not endorsed or certified by TMDB.
         </div>
       </div>
     </footer>

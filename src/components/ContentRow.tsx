@@ -23,7 +23,7 @@ export default function ContentRow({ title, icon, movies, watchlist, onPlay, onT
           {icon}
           {title}
         </h3>
-        <button className="text-[13px] font-bold text-accent flex items-center gap-1 hover:text-foreground hover:gap-2 transition-all">
+        <button onClick={onSeeAll} className="text-[13px] font-bold text-accent flex items-center gap-1 hover:text-foreground hover:gap-2 transition-all">
           See All <ChevronRight className="w-4 h-4" />
         </button>
       </div>
