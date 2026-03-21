@@ -92,11 +92,18 @@ export function RewardAdOverlay({ slotName = "player_reward", onComplete, onSkip
     return () => clearTimeout(timer);
   }, [active, slot, onComplete]);
 
-  if (!active || !slot) {
-    // If no reward ad configured, go directly to player
-    onComplete();
-    return null;
-  }
+  useEffect(() => {
+    if (!active || !slot) {
+      if (!fallbackDone.current) {
+        fallbackDone.current = true;
+        onComplete();
+      }
+      return;
+    }
+    fallbackDone.current = false;
+  }, [active, slot, onComplete]);
+
+  if (!active || !slot) return null;
 
   return (
     <div className="fixed inset-0 z-[9999] bg-black/90 flex flex-col items-center justify-center gap-6 animate-fade-in">
