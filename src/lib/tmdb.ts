@@ -1,4 +1,4 @@
-const API_KEY = "b74e80e4bcc1e498a50cee84c072087e";
+const API_KEY = "05902896074695709d7763505bb88b4d";
 const BASE = "https://api.themoviedb.org/3";
 
 export const IMG_W500 = "https://image.tmdb.org/t/p/w500";
