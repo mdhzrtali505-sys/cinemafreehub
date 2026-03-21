@@ -87,6 +87,7 @@ export default function Index() {
   };
 
   const handlePlay = (movie: Movie) => {
+    trackMovieClick(movie.id, getTitle(movie), "play");
     setModalMovie(null);
     setPlayerMovie(movie);
   };
