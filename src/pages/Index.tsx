@@ -219,7 +219,20 @@ export default function Index() {
         )}
       </div>
 
+      {/* Footer ad */}
+      <div className="flex justify-center my-6 px-[4%]">
+        <AdSlotBanner slotName="footer_above" className="rounded-xl" />
+      </div>
+
       <Footer />
+
+      {/* Reward Ad Overlay */}
+      {rewardMovie && (
+        <RewardAdOverlay
+          onComplete={handleRewardComplete}
+          onSkip={handleRewardComplete}
+        />
+      )}
 
       {/* Modals */}
       <MovieModal
