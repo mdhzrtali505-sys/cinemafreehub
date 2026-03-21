@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import AdBanner from "@/components/AdBanner";
 import { Flame, TrendingUp, Sparkles, Film, Tv, Globe } from "lucide-react";
 import { tmdb, Movie, getTitle } from "@/lib/tmdb";
 import { trackPageView, trackMovieClick, startHeartbeat, stopHeartbeat } from "@/lib/analytics";
