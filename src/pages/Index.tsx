@@ -91,7 +91,14 @@ export default function Index() {
   const handlePlay = (movie: Movie) => {
     trackMovieClick(movie.id, getTitle(movie), "play");
     setModalMovie(null);
-    setPlayerMovie(movie);
+    setRewardMovie(movie); // Show reward ad first
+  };
+
+  const handleRewardComplete = () => {
+    if (rewardMovie) {
+      setPlayerMovie(rewardMovie);
+      setRewardMovie(null);
+    }
   };
 
   const showGrid = isSearching || (activeGenre && genreMovies.length > 0);
