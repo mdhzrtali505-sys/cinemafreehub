@@ -33,6 +33,12 @@ export default function Index() {
   const [playerMovie, setPlayerMovie] = useState<Movie | null>(null);
 
   useEffect(() => {
+    trackPageView("/");
+    startHeartbeat("/");
+    return () => stopHeartbeat();
+  }, []);
+
+  useEffect(() => {
     Promise.all([
       tmdb.trending("movie").then((d) => d?.results && setTrending(d.results.filter((m) => m.backdrop_path))),
       tmdb.popular("movie").then((d) => d?.results && setPopular(d.results.filter((m) => m.poster_path))),
