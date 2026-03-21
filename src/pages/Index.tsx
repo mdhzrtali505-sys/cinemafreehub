@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { Flame, TrendingUp, Sparkles, Film, Tv, Globe } from "lucide-react";
-import { tmdb, Movie } from "@/lib/tmdb";
+import { tmdb, Movie, getTitle } from "@/lib/tmdb";
+import { trackPageView, trackMovieClick, startHeartbeat, stopHeartbeat } from "@/lib/analytics";
 import Navbar from "@/components/Navbar";
 import HeroSlider from "@/components/HeroSlider";
 import ContentRow from "@/components/ContentRow";
