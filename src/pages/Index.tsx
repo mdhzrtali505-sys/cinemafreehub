@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import AdBanner from "@/components/AdBanner";
 import { Flame, TrendingUp, Sparkles, Film, Tv, Globe } from "lucide-react";
 import { tmdb, Movie, getTitle } from "@/lib/tmdb";
 import { trackPageView, trackMovieClick, startHeartbeat, stopHeartbeat } from "@/lib/analytics";
@@ -157,6 +158,10 @@ export default function Index() {
               onToggleWatchlist={toggleWatchlist}
               showRank
             />
+            {/* Ad Banner */}
+            <div className="flex justify-center my-6">
+              <AdBanner width={728} height={90} className="rounded-xl" />
+            </div>
             <ContentRow
               title="🎬 Now Playing"
               icon={<Film className="w-5 h-5 text-primary" />}
@@ -173,6 +178,10 @@ export default function Index() {
               onPlay={handlePlay}
               onToggleWatchlist={toggleWatchlist}
             />
+            {/* Ad Banner */}
+            <div className="flex justify-center my-6">
+              <AdBanner width={468} height={60} className="rounded-xl" />
+            </div>
             <ContentRow
               title="📺 Trending TV Shows"
               icon={<Tv className="w-5 h-5 text-primary" />}
