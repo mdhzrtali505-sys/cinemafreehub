@@ -46,7 +46,7 @@ export default function ContentRow({ title, icon, movies, watchlist, onPlay, onT
 function RowSkeleton({ title }: { title: string }) {
   return (
     <div className="mb-12">
-      <h3 className="text-xl font-extrabold mb-5 px-1 tracking-tight">{title}</h3>
+      <h2 className="text-xl font-extrabold mb-5 px-1 tracking-tight">{title}</h2>
       <div className="flex gap-3 overflow-hidden">
         {Array.from({ length: 10 }).map((_, i) => (
           <div key={i} className="flex-shrink-0 w-[155px] aspect-[2/3] rounded-[10px] bg-surface2 relative overflow-hidden">
