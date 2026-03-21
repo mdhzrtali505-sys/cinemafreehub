@@ -15,7 +15,10 @@ export default function PlayerModal({ movie, onClose }: PlayerModalProps) {
     : `https://vidsrc.cc/v2/embed/movie/${movie.id}`;
 
   return (
-    <div className="fixed inset-0 z-[10000] bg-background flex flex-col">
+    <div
+      className="fixed inset-0 z-[10000] bg-background flex flex-col select-none"
+      onContextMenu={(e) => e.preventDefault()}
+    >
       <div className="flex items-center justify-between px-6 py-4 glass-bg border-b border-border">
         <h3 className="text-lg font-bold truncate">{getTitle(movie)}</h3>
         <button onClick={onClose} className="w-10 h-10 rounded-full bg-foreground/10 border border-border flex items-center justify-center hover:bg-foreground/15 transition-colors">
@@ -28,7 +31,13 @@ export default function PlayerModal({ movie, onClose }: PlayerModalProps) {
           className="absolute inset-0 w-full h-full border-none"
           allowFullScreen
           allow="autoplay; encrypted-media; fullscreen"
+          sandbox="allow-scripts allow-same-origin allow-presentation allow-forms allow-popups"
           title={getTitle(movie)}
+        />
+        {/* Transparent overlay to block right-click save */}
+        <div
+          className="absolute top-0 left-0 w-full h-12 z-10"
+          onContextMenu={(e) => e.preventDefault()}
         />
       </div>
     </div>

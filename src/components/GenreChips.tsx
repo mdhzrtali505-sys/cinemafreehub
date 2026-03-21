@@ -8,6 +8,7 @@ const MOODS = [
   { emoji: "🎭", label: "Drama", genre: "18" },
   { emoji: "🕵️", label: "Thriller", genre: "53" },
   { emoji: "✨", label: "Animation", genre: "16" },
+  { emoji: "🇧🇩", label: "Bangla", genre: "bangla" },
 ];
 
 interface GenreChipsProps {
