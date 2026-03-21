@@ -10,9 +10,10 @@ interface ContentRowProps {
   onPlay: (movie: Movie) => void;
   onToggleWatchlist: (movie: Movie) => void;
   showRank?: boolean;
+  onSeeAll?: () => void;
 }
 
-export default function ContentRow({ title, icon, movies, watchlist, onPlay, onToggleWatchlist, showRank }: ContentRowProps) {
+export default function ContentRow({ title, icon, movies, watchlist, onPlay, onToggleWatchlist, showRank, onSeeAll }: ContentRowProps) {
   if (!movies.length) return <RowSkeleton title={title} />;
 
   return (
