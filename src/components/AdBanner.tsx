@@ -60,6 +60,7 @@ export function RewardAdOverlay({ slotName = "player_reward", onComplete, onSkip
   const { getSlot, isActive } = useAdSettings();
   const containerRef = useRef<HTMLDivElement>(null);
   const loaded = useRef(false);
+  const fallbackDone = useRef(false);
   const active = isActive(slotName);
   const slot = getSlot(slotName);
 
