@@ -8,7 +8,7 @@ export default function Footer() {
           <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center brand-glow">
             <Play className="w-3.5 h-3.5 text-primary-foreground fill-primary-foreground ml-0.5" />
           </div>
-          <span className="text-xl font-black text-primary tracking-tight">Playflix</span>
+          <span className="text-xl font-black text-primary tracking-tight">CinemaFreeHub</span>
         </div>
         <p className="text-text-tertiary text-sm max-w-md leading-relaxed mb-8">
           Stream your favorite movies and TV shows in HD quality. Unlimited entertainment at your fingertips.
