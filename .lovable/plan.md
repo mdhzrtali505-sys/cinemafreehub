@@ -1,19 +1,15 @@
 
 
-## Google Search Console Verification যোগ করা
+## Google Verification Meta Tag আপডেট
 
-ইউজার Google verification ফাইল আপলোড করেছে। দুটি কাজ করতে হবে:
+`index.html` এর `<head>` সেকশনে বিদ্যমান verification tag টি নতুন content value দিয়ে আপডেট করা হবে:
 
-### 1. HTML Verification File যোগ
-- `user-uploads://google93b181265d61b065.html` ফাইলটি `public/google93b181265d61b065.html` এ কপি করা
-- এতে `cinemafreehub.lovable.app/google93b181265d61b065.html` এ অ্যাক্সেসযোগ্য হবে
-
-### 2. index.html এ meta tag যোগ
-- `<head>` সেকশনে `<meta name="google-site-verification" content="93b181265d61b065" />` যোগ করা
+```html
+<meta name="google-site-verification" content="5NpmOUov7OwtlwM7tVFN6q4FcQPgBr9nWCn4V-xhm90" />
+```
 
 ### ফাইল পরিবর্তন
 | ফাইল | কাজ |
 |---|---|
-| `public/google93b181265d61b065.html` | verification ফাইল কপি |
-| `index.html` | meta verification tag যোগ |
+| `index.html` | verification content `93b181265d61b065` → `5NpmOUov7OwtlwM7tVFN6q4FcQPgBr9nWCn4V-xhm90` |
 
