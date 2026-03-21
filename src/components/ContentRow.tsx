@@ -19,7 +19,7 @@ export default function ContentRow({ title, icon, movies, watchlist, onPlay, onT
   return (
     <div className="mb-12">
       <div className="flex justify-between items-center mb-5 px-1">
-        <h3 className="text-xl font-extrabold flex items-center gap-2.5 tracking-tight">
+        <h2 className="text-xl font-extrabold flex items-center gap-2.5 tracking-tight">
           {icon}
           {title}
         </h3>
