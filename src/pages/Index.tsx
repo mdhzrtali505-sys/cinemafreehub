@@ -32,6 +32,7 @@ export default function Index() {
 
   const [modalMovie, setModalMovie] = useState<Movie | null>(null);
   const [playerMovie, setPlayerMovie] = useState<Movie | null>(null);
+  const [rewardMovie, setRewardMovie] = useState<Movie | null>(null);
 
   useEffect(() => {
     trackPageView("/");
