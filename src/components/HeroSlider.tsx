@@ -55,9 +55,9 @@ export default function HeroSlider({ movies, onPlay, onInfo, watchlist, onToggle
                     </span>
                   </div>
 
-                  <h2 className="text-[clamp(2.2rem,5vw,4.8rem)] font-black leading-[1.05] mb-4 text-foreground tracking-tight" style={{ textShadow: "0 4px 24px rgba(0,0,0,0.7)" }}>
+                  <h1 className="text-[clamp(2.2rem,5vw,4.8rem)] font-black leading-[1.05] mb-4 text-foreground tracking-tight" style={{ textShadow: "0 4px 24px rgba(0,0,0,0.7)" }}>
                     {getTitle(movie)}
-                  </h2>
+                  </h1>
 
                   {/* Meta */}
                   <div className="flex items-center gap-4 mb-4 text-[15px] text-foreground/80 font-medium flex-wrap">

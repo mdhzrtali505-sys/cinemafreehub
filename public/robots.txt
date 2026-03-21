@@ -3,4 +3,4 @@ Allow: /
 Disallow: /pf-ctrl-9x7k
 Disallow: /pf-ctrl-9x7k/dashboard
 
-Sitemap: /sitemap.xml
+Sitemap: https://cinemafreehub.lovable.app/sitemap.xml

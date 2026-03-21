@@ -22,7 +22,7 @@ export default function ContentRow({ title, icon, movies, watchlist, onPlay, onT
         <h2 className="text-xl font-extrabold flex items-center gap-2.5 tracking-tight">
           {icon}
           {title}
-        </h3>
+        </h2>
         <button onClick={onSeeAll} className="text-[13px] font-bold text-accent flex items-center gap-1 hover:text-foreground hover:gap-2 transition-all">
           See All <ChevronRight className="w-4 h-4" />
         </button>
