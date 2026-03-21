@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { Flame, TrendingUp, Sparkles, Film, Tv, Globe } from "lucide-react";
-import { tmdb, Movie } from "@/lib/tmdb";
+import { tmdb, Movie, getTitle } from "@/lib/tmdb";
+import { trackPageView, trackMovieClick, startHeartbeat, stopHeartbeat } from "@/lib/analytics";
 import Navbar from "@/components/Navbar";
 import HeroSlider from "@/components/HeroSlider";
 import ContentRow from "@/components/ContentRow";
@@ -30,6 +31,12 @@ export default function Index() {
 
   const [modalMovie, setModalMovie] = useState<Movie | null>(null);
   const [playerMovie, setPlayerMovie] = useState<Movie | null>(null);
+
+  useEffect(() => {
+    trackPageView("/");
+    startHeartbeat("/");
+    return () => stopHeartbeat();
+  }, []);
 
   useEffect(() => {
     Promise.all([
@@ -80,6 +87,7 @@ export default function Index() {
   };
 
   const handlePlay = (movie: Movie) => {
+    trackMovieClick(movie.id, getTitle(movie), "play");
     setModalMovie(null);
     setPlayerMovie(movie);
   };
