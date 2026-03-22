@@ -1,18 +1,48 @@
 
 
-## পরিকল্পনা: Lovable ব্যাজ সরানো + সুন্দর লোগো তৈরি
+## পরিকল্পনা: অ্যাডমিন প্যানেলে সাইট সেটিংস (নাম + লোগো পরিবর্তন)
 
-### 1. "Lovable" ব্যাজ সরানো
-আপনার সাইটে নিচে ডানদিকে "Edit in Lovable" ব্যাজটি দেখা যাচ্ছে। এটি কোডে নেই — এটি Lovable প্ল্যাটফর্মের ব্যাজ।
+### ধারণা
+ডাটাবেসে একটি `site_settings` টেবিল তৈরি করা হবে যেখানে সাইটের নাম এবং লোগো URL সংরক্ষিত থাকবে। অ্যাডমিন প্যানেল থেকে এগুলো পরিবর্তন করা যাবে। Navbar ও Footer সেখান থেকে ডেটা পড়বে।
 
-**এটি সরাতে:** Settings → General → "Hide 'Lovable' Badge" অপশনটি ON করুন। এটি আমি কোড দিয়ে করতে পারি না, আপনাকে সেটিংস থেকে করতে হবে।
+---
 
-### 2. সুন্দর SVG লোগো তৈরি
-বর্তমানে শুধু একটি Play আইকন সহ লাল বক্স আছে। একটি কাস্টম সিনেমা-থিম SVG লোগো তৈরি করবো — ফিল্ম রিল + প্লে বাটন ডিজাইন।
+### পরিবর্তনসমূহ
+
+#### 1. ডাটাবেস — `site_settings` টেবিল তৈরি
+- `id`, `site_name` (text), `logo_url` (text, nullable), `updated_at`
+- একটি ডিফল্ট row insert: `site_name = 'CinemaFreeHub'`
+- RLS: সবাই পড়তে পারবে, শুধু admin আপডেট করতে পারবে
+
+#### 2. Storage bucket তৈরি — `site-assets`
+- লোগো ইমেজ আপলোডের জন্য
+- Public read, admin-only upload
+
+#### 3. নতুন hook — `useSiteSettings.ts`
+- `site_settings` থেকে নাম ও লোগো URL ফেচ করবে
+- ক্যাশ করবে যাতে বারবার query না হয়
+
+#### 4. নতুন কম্পোনেন্ট — `AdminSiteSettings.tsx`
+- সাইটের নাম এডিট করার ইনপুট
+- লোগো আপলোড বাটন (ইমেজ আপলোড → storage → URL সেভ)
+- বর্তমান লোগো প্রিভিউ
+- Save বাটন
+
+#### 5. অ্যাডমিন ড্যাশবোর্ড — নতুন ট্যাব যোগ
+- `AdminDashboard.tsx` এ "Settings" ট্যাব যোগ (Analytics, Ads এর পাশে)
+- Tab type: `"analytics" | "ads" | "settings"`
+
+#### 6. CinemaLogo আপডেট
+- `useSiteSettings` hook ব্যবহার করে ডাইনামিক নাম ও লোগো দেখাবে
+- লোগো URL থাকলে কাস্টম ইমেজ দেখাবে, না থাকলে ডিফল্ট SVG
+
+### ফাইল তালিকা
 
 | ফাইল | কাজ |
 |---|---|
-| `src/components/CinemaLogo.tsx` | নতুন SVG লোগো কম্পোনেন্ট তৈরি (ফিল্ম রিল + প্লে আইকন, গ্র্যাডিয়েন্ট সহ) |
-| `src/components/Navbar.tsx` | পুরনো Play আইকন বক্স → নতুন CinemaLogo কম্পোনেন্ট |
-| `src/components/Footer.tsx` | ফুটারেও নতুন লোগো ব্যবহার |
+| DB Migration | `site_settings` টেবিল + storage bucket |
+| `src/hooks/useSiteSettings.ts` | সাইট সেটিংস ফেচ hook |
+| `src/components/AdminSiteSettings.tsx` | সেটিংস UI (নাম + লোগো আপলোড) |
+| `src/pages/AdminDashboard.tsx` | "Settings" ট্যাব যোগ |
+| `src/components/CinemaLogo.tsx` | ডাইনামিক নাম ও লোগো |
 
