@@ -38,7 +38,7 @@ const CHART_COLORS = [
   "hsl(30, 90%, 55%)",
 ];
 
-type Tab = "analytics" | "ads";
+type Tab = "analytics" | "ads" | "settings";
 
 export default function AdminDashboard() {
   const navigate = useNavigate();
