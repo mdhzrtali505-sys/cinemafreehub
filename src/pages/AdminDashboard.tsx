@@ -186,6 +186,16 @@ export default function AdminDashboard() {
           >
             <Megaphone className="w-4 h-4" /> Ad Management
           </button>
+          <button
+            onClick={() => setActiveTab("settings")}
+            className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-all ${
+              activeTab === "settings"
+                ? "bg-primary text-white shadow-sm"
+                : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            ⚙️ Settings
+          </button>
         </div>
       </div>
 
