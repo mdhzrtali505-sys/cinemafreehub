@@ -10,6 +10,7 @@ import {
   AreaChart, Area, PieChart, Pie, Cell
 } from "recharts";
 import AdminAdManager from "@/components/AdminAdManager";
+import AdminSiteSettings from "@/components/AdminSiteSettings";
 
 interface Stats {
   activeNow: number;
