@@ -320,8 +320,10 @@ export default function AdminDashboard() {
               Auto-refreshing every 15 seconds • Data updates in real-time
             </div>
           </>
-        ) : (
+        ) : activeTab === "ads" ? (
           <AdminAdManager />
+        ) : (
+          <AdminSiteSettings />
         )}
       </main>
     </div>
