@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
-import { Search, X, Play, Bell } from "lucide-react";
+import { Search, X, Bell } from "lucide-react";
 import { tmdb, IMG_W500, getTitle, Movie } from "@/lib/tmdb";
+import CinemaLogo from "./CinemaLogo";
 
 interface NavbarProps {
   onSearch: (query: string) => void;
