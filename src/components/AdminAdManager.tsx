@@ -143,7 +143,7 @@ export default function AdminAdManager() {
                 <input
                   value={slot.ad_key || ""}
                   onChange={(e) => handleFieldChange(slot.id, "ad_key", e.target.value)}
-                  placeholder="e.g. a59b106c0ea0fb73099e0528d9fe7001"
+                  placeholder="e.g. 5677134"
                   className="w-full bg-foreground/[0.04] border border-white/[0.08] rounded-lg px-3 py-2 text-sm text-foreground outline-none focus:border-primary/50 transition-colors font-mono"
                 />
               </div>
