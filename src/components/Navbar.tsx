@@ -69,11 +69,8 @@ export default function Navbar({ onSearch, onHomeClick }: NavbarProps) {
     >
       {/* Logo */}
       <div className="flex items-center gap-9">
-        <button onClick={onHomeClick} className="flex items-center gap-2.5 text-primary font-black text-[26px] tracking-tight hover:scale-[1.04] transition-transform active:scale-[0.97]">
-          <div className="w-9 h-9 bg-primary rounded-lg flex items-center justify-center brand-glow">
-            <Play className="w-4 h-4 text-primary-foreground fill-primary-foreground ml-0.5" />
-          </div>
-          <span className="hidden sm:inline" style={{ textShadow: "0 0 30px hsla(358,93%,47%,0.5)" }}>CinemaFreeHub</span>
+        <button onClick={onHomeClick} className="hover:scale-[1.04] transition-transform active:scale-[0.97]">
+          <CinemaLogo size={36} />
         </button>
       </div>
 
