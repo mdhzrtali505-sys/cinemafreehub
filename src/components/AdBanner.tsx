@@ -1,6 +1,8 @@
 import { useEffect, useRef } from "react";
 import { useAdSettings } from "@/hooks/useAdSettings";
 
+const ADSENSE_CLIENT = "ca-pub-6614014413986916";
+
 interface AdSlotBannerProps {
   slotName: string;
   className?: string;
@@ -19,20 +21,23 @@ export default function AdSlotBanner({ slotName, className = "" }: AdSlotBannerP
     loaded.current = true;
 
     try {
-      const atOptions = {
-        key: slot.ad_key,
-        format: "iframe",
-        height: slot.height,
-        width: slot.width,
-        params: {},
-      };
-      (window as any).atOptions = atOptions;
+      const ins = document.createElement("ins");
+      ins.className = "adsbygoogle";
+      ins.style.display = "block";
+      ins.setAttribute("data-ad-client", ADSENSE_CLIENT);
+      ins.setAttribute("data-ad-slot", slot.ad_key);
 
-      const script = document.createElement("script");
-      script.type = "text/javascript";
-      script.src = `//www.highperformanceformat.com/${slot.ad_key}/invoke.js`;
-      script.async = true;
-      containerRef.current.appendChild(script);
+      if (slot.ad_type === "responsive") {
+        ins.setAttribute("data-ad-format", "auto");
+        ins.setAttribute("data-full-width-responsive", "true");
+      } else {
+        ins.style.width = `${slot.width}px`;
+        ins.style.height = `${slot.height}px`;
+      }
+
+      containerRef.current.appendChild(ins);
+
+      ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
     } catch {
       console.log("Ad blocked or failed");
     }
@@ -44,7 +49,10 @@ export default function AdSlotBanner({ slotName, className = "" }: AdSlotBannerP
     <div
       ref={containerRef}
       className={`flex items-center justify-center overflow-hidden ${className}`}
-      style={{ minHeight: slot.height, maxWidth: "100%" }}
+      style={{
+        minHeight: slot.ad_type === "responsive" ? 90 : slot.height,
+        maxWidth: "100%",
+      }}
     />
   );
 }
@@ -69,25 +77,20 @@ export function RewardAdOverlay({ slotName = "player_reward", onComplete, onSkip
     loaded.current = true;
 
     try {
-      const atOptions = {
-        key: slot.ad_key,
-        format: "iframe",
-        height: slot.height,
-        width: slot.width,
-        params: {},
-      };
-      (window as any).atOptions = atOptions;
+      const ins = document.createElement("ins");
+      ins.className = "adsbygoogle";
+      ins.style.display = "block";
+      ins.setAttribute("data-ad-client", ADSENSE_CLIENT);
+      ins.setAttribute("data-ad-slot", slot.ad_key);
+      ins.style.width = `${slot.width}px`;
+      ins.style.height = `${slot.height}px`;
+      containerRef.current.appendChild(ins);
 
-      const script = document.createElement("script");
-      script.type = "text/javascript";
-      script.src = `//www.highperformanceformat.com/${slot.ad_key}/invoke.js`;
-      script.async = true;
-      containerRef.current.appendChild(script);
+      ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
     } catch {
       console.log("Reward ad blocked");
     }
 
-    // Auto-skip after 10 seconds
     const timer = setTimeout(onComplete, 10000);
     return () => clearTimeout(timer);
   }, [active, slot, onComplete]);
@@ -157,27 +160,7 @@ function CountdownTimer({ seconds, onDone }: { seconds: number; onDone: () => vo
   );
 }
 
-// Popunder ad — loads once per session
+// Popunder ad — no longer used with AdSense (kept for compatibility)
 export function PopunderAd() {
-  const { getSlot, isActive } = useAdSettings();
-  const loaded = useRef(false);
-  const active = isActive("popunder");
-  const slot = getSlot("popunder");
-
-  useEffect(() => {
-    if (loaded.current || !active || !slot?.ad_key) return;
-    loaded.current = true;
-
-    try {
-      const script = document.createElement("script");
-      script.type = "text/javascript";
-      script.src = `//www.highperformanceformat.com/${slot.ad_key}/invoke.js`;
-      script.async = true;
-      document.body.appendChild(script);
-    } catch {
-      console.log("Popunder ad blocked");
-    }
-  }, [active, slot]);
-
   return null;
 }
