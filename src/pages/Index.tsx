@@ -208,6 +208,7 @@ export default function Index() {
       </div>
 
       <Footer />
+      <PopunderAd />
 
       {rewardMovie && (
         <RewardAdOverlay

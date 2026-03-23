@@ -150,26 +150,28 @@ export default function AdminAdManager() {
                 />
               </div>
 
-              <div className="flex gap-2">
-                <div className="flex-1">
-                  <label className="text-[10px] font-bold uppercase text-muted-foreground tracking-wider mb-1 block">Width</label>
-                  <input
-                    type="number"
-                    value={slot.width}
-                    onChange={(e) => handleFieldChange(slot.id, "width", parseInt(e.target.value) || 0)}
-                    className="w-full bg-foreground/[0.04] border border-white/[0.08] rounded-lg px-3 py-2 text-sm text-foreground outline-none focus:border-primary/50 transition-colors tabular-nums"
-                  />
+              {slot.ad_type !== "popunder" && (
+                <div className="flex gap-2">
+                  <div className="flex-1">
+                    <label className="text-[10px] font-bold uppercase text-muted-foreground tracking-wider mb-1 block">Width</label>
+                    <input
+                      type="number"
+                      value={slot.width}
+                      onChange={(e) => handleFieldChange(slot.id, "width", parseInt(e.target.value) || 0)}
+                      className="w-full bg-foreground/[0.04] border border-white/[0.08] rounded-lg px-3 py-2 text-sm text-foreground outline-none focus:border-primary/50 transition-colors tabular-nums"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <label className="text-[10px] font-bold uppercase text-muted-foreground tracking-wider mb-1 block">Height</label>
+                    <input
+                      type="number"
+                      value={slot.height}
+                      onChange={(e) => handleFieldChange(slot.id, "height", parseInt(e.target.value) || 0)}
+                      className="w-full bg-foreground/[0.04] border border-white/[0.08] rounded-lg px-3 py-2 text-sm text-foreground outline-none focus:border-primary/50 transition-colors tabular-nums"
+                    />
+                  </div>
                 </div>
-                <div className="flex-1">
-                  <label className="text-[10px] font-bold uppercase text-muted-foreground tracking-wider mb-1 block">Height</label>
-                  <input
-                    type="number"
-                    value={slot.height}
-                    onChange={(e) => handleFieldChange(slot.id, "height", parseInt(e.target.value) || 0)}
-                    className="w-full bg-foreground/[0.04] border border-white/[0.08] rounded-lg px-3 py-2 text-sm text-foreground outline-none focus:border-primary/50 transition-colors tabular-nums"
-                  />
-                </div>
-              </div>
+              )}
             </div>
 
             <div className="flex justify-between mt-3 pt-3 border-t border-white/[0.04]">

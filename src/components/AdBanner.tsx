@@ -156,3 +156,28 @@ function CountdownTimer({ seconds, onDone }: { seconds: number; onDone: () => vo
     </div>
   );
 }
+
+// Popunder ad — loads once per session
+export function PopunderAd() {
+  const { getSlot, isActive } = useAdSettings();
+  const loaded = useRef(false);
+  const active = isActive("popunder");
+  const slot = getSlot("popunder");
+
+  useEffect(() => {
+    if (loaded.current || !active || !slot?.ad_key) return;
+    loaded.current = true;
+
+    try {
+      const script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = `//www.highperformanceformat.com/${slot.ad_key}/invoke.js`;
+      script.async = true;
+      document.body.appendChild(script);
+    } catch {
+      console.log("Popunder ad blocked");
+    }
+  }, [active, slot]);
+
+  return null;
+}
