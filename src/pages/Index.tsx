@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import AdSlotBanner, { RewardAdOverlay } from "@/components/AdBanner";
+import AdSlotBanner, { RewardAdOverlay, PopunderAd } from "@/components/AdBanner";
 import { Flame, TrendingUp, Sparkles, Film, Tv, Globe } from "lucide-react";
 import { tmdb, Movie, getTitle } from "@/lib/tmdb";
 import { trackPageView, trackMovieClick, startHeartbeat, stopHeartbeat } from "@/lib/analytics";
@@ -208,6 +208,7 @@ export default function Index() {
       </div>
 
       <Footer />
+      <PopunderAd />
 
       {rewardMovie && (
         <RewardAdOverlay
