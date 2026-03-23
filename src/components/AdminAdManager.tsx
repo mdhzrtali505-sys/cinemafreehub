@@ -105,9 +105,11 @@ export default function AdminAdManager() {
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
                   <span className={`text-[10px] px-2 py-0.5 rounded font-bold uppercase ${
-                    slot.ad_type === "reward" 
-                      ? "bg-amber-500/10 text-amber-400" 
-                      : "bg-primary/10 text-primary"
+                    slot.ad_type === "popunder"
+                      ? "bg-purple-500/10 text-purple-400"
+                      : slot.ad_type === "reward" 
+                        ? "bg-amber-500/10 text-amber-400" 
+                        : "bg-primary/10 text-primary"
                   }`}>
                     {slot.ad_type}
                   </span>
