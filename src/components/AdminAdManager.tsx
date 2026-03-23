@@ -77,7 +77,7 @@ export default function AdminAdManager() {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Megaphone className="w-5 h-5 text-primary" />
-          <h2 className="text-base font-bold text-foreground">Ad Management — Adsterra</h2>
+          <h2 className="text-base font-bold text-foreground">Ad Management — Google AdSense</h2>
         </div>
         <button
           onClick={addSlot}
@@ -88,7 +88,9 @@ export default function AdminAdManager() {
       </div>
 
       <div className="text-xs text-muted-foreground mb-2">
-        Adsterra থেকে প্রতিটি অ্যাড ইউনিটের কী কপি করে এখানে পেস্ট করুন। সুইচ দিয়ে অন/অফ করুন।
+        Google AdSense থেকে প্রতিটি অ্যাড ইউনিটের Slot ID কপি করে এখানে পেস্ট করুন। সুইচ দিয়ে অন/অফ করুন।
+        <br />
+        <span className="text-muted-foreground/70">Publisher ID: ca-pub-6614014413986916</span>
       </div>
 
       <div className="space-y-3">
@@ -107,8 +109,8 @@ export default function AdminAdManager() {
                   <span className={`text-[10px] px-2 py-0.5 rounded font-bold uppercase ${
                     slot.ad_type === "popunder"
                       ? "bg-purple-500/10 text-purple-400"
-                      : slot.ad_type === "reward" 
-                        ? "bg-amber-500/10 text-amber-400" 
+                      : slot.ad_type === "reward"
+                        ? "bg-amber-500/10 text-amber-400"
                         : "bg-primary/10 text-primary"
                   }`}>
                     {slot.ad_type}
@@ -140,12 +142,12 @@ export default function AdminAdManager() {
             <div className="space-y-2">
               <div>
                 <label className="text-[10px] font-bold uppercase text-muted-foreground tracking-wider mb-1 block">
-                  Adsterra Ad Key
+                  AdSense Ad Slot ID
                 </label>
                 <input
                   value={slot.ad_key || ""}
                   onChange={(e) => handleFieldChange(slot.id, "ad_key", e.target.value)}
-                  placeholder="e.g. 5677134"
+                  placeholder="e.g. 1234567890"
                   className="w-full bg-foreground/[0.04] border border-white/[0.08] rounded-lg px-3 py-2 text-sm text-foreground outline-none focus:border-primary/50 transition-colors font-mono"
                 />
               </div>
@@ -153,23 +155,44 @@ export default function AdminAdManager() {
               {slot.ad_type !== "popunder" && (
                 <div className="flex gap-2">
                   <div className="flex-1">
-                    <label className="text-[10px] font-bold uppercase text-muted-foreground tracking-wider mb-1 block">Width</label>
-                    <input
-                      type="number"
-                      value={slot.width}
-                      onChange={(e) => handleFieldChange(slot.id, "width", parseInt(e.target.value) || 0)}
-                      className="w-full bg-foreground/[0.04] border border-white/[0.08] rounded-lg px-3 py-2 text-sm text-foreground outline-none focus:border-primary/50 transition-colors tabular-nums"
-                    />
+                    <label className="text-[10px] font-bold uppercase text-muted-foreground tracking-wider mb-1 block">Format</label>
+                    <select
+                      value={slot.ad_type === "responsive" ? "responsive" : "fixed"}
+                      onChange={(e) => {
+                        if (e.target.value === "responsive") {
+                          handleFieldChange(slot.id, "ad_type", "responsive");
+                        } else {
+                          handleFieldChange(slot.id, "ad_type", "banner");
+                        }
+                      }}
+                      className="w-full bg-foreground/[0.04] border border-white/[0.08] rounded-lg px-3 py-2 text-sm text-foreground outline-none focus:border-primary/50 transition-colors"
+                    >
+                      <option value="responsive">Auto (Responsive)</option>
+                      <option value="fixed">Fixed Size</option>
+                    </select>
                   </div>
-                  <div className="flex-1">
-                    <label className="text-[10px] font-bold uppercase text-muted-foreground tracking-wider mb-1 block">Height</label>
-                    <input
-                      type="number"
-                      value={slot.height}
-                      onChange={(e) => handleFieldChange(slot.id, "height", parseInt(e.target.value) || 0)}
-                      className="w-full bg-foreground/[0.04] border border-white/[0.08] rounded-lg px-3 py-2 text-sm text-foreground outline-none focus:border-primary/50 transition-colors tabular-nums"
-                    />
-                  </div>
+                  {slot.ad_type !== "responsive" && (
+                    <>
+                      <div className="flex-1">
+                        <label className="text-[10px] font-bold uppercase text-muted-foreground tracking-wider mb-1 block">Width</label>
+                        <input
+                          type="number"
+                          value={slot.width}
+                          onChange={(e) => handleFieldChange(slot.id, "width", parseInt(e.target.value) || 0)}
+                          className="w-full bg-foreground/[0.04] border border-white/[0.08] rounded-lg px-3 py-2 text-sm text-foreground outline-none focus:border-primary/50 transition-colors tabular-nums"
+                        />
+                      </div>
+                      <div className="flex-1">
+                        <label className="text-[10px] font-bold uppercase text-muted-foreground tracking-wider mb-1 block">Height</label>
+                        <input
+                          type="number"
+                          value={slot.height}
+                          onChange={(e) => handleFieldChange(slot.id, "height", parseInt(e.target.value) || 0)}
+                          className="w-full bg-foreground/[0.04] border border-white/[0.08] rounded-lg px-3 py-2 text-sm text-foreground outline-none focus:border-primary/50 transition-colors tabular-nums"
+                        />
+                      </div>
+                    </>
+                  )}
                 </div>
               )}
             </div>
