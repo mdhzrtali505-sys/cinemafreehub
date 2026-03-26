@@ -151,6 +151,12 @@ export default function Index() {
           </div>
         )}
 
+        {!showGrid && (
+          <div className="flex justify-center my-4 px-[4%]">
+            <AdSlotBanner slotName="hero_below" className="rounded-xl" />
+          </div>
+        )}
+
         <GenreChips activeGenre={activeGenre} onSelect={handleGenre} />
 
         {showGrid && (
