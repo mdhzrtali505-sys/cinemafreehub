@@ -10,6 +10,7 @@ export interface AdSlot {
   is_enabled: boolean;
   width: number;
   height: number;
+  layout_key: string;
 }
 
 let cachedSlots: AdSlot[] | null = null;

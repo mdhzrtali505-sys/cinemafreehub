@@ -27,16 +27,36 @@ export default function AdSlotBanner({ slotName, className = "" }: AdSlotBannerP
       ins.setAttribute("data-ad-client", ADSENSE_CLIENT);
       ins.setAttribute("data-ad-slot", slot.ad_key);
 
-      if (slot.ad_type === "responsive") {
-        ins.setAttribute("data-ad-format", "auto");
-        ins.setAttribute("data-full-width-responsive", "true");
-      } else {
+      switch (slot.ad_type) {
+        case "in-feed":
+          ins.setAttribute("data-ad-format", "fluid");
+          if (slot.layout_key) {
+            ins.setAttribute("data-ad-layout-key", slot.layout_key);
+          }
+          break;
+        case "in-article":
+          ins.setAttribute("data-ad-format", "fluid");
+          ins.setAttribute("data-ad-layout", "in-article");
+          ins.style.textAlign = "center";
+          break;
+        case "multiplex":
+          ins.setAttribute("data-ad-format", "autorelaxed");
+          break;
+        case "display":
+        case "responsive":
+        default:
+          ins.setAttribute("data-ad-format", "auto");
+          ins.setAttribute("data-full-width-responsive", "true");
+          break;
+      }
+
+      // For fixed size ads
+      if (slot.ad_type === "banner" && slot.width && slot.height) {
         ins.style.width = `${slot.width}px`;
         ins.style.height = `${slot.height}px`;
       }
 
       containerRef.current.appendChild(ins);
-
       ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
     } catch {
       console.log("Ad blocked or failed");
@@ -50,7 +70,7 @@ export default function AdSlotBanner({ slotName, className = "" }: AdSlotBannerP
       ref={containerRef}
       className={`flex items-center justify-center overflow-hidden ${className}`}
       style={{
-        minHeight: slot.ad_type === "responsive" ? 90 : slot.height,
+        minHeight: slot.ad_type === "banner" ? slot.height : 90,
         maxWidth: "100%",
       }}
     />
@@ -85,7 +105,6 @@ export function RewardAdOverlay({ slotName = "player_reward", onComplete, onSkip
       ins.style.width = `${slot.width}px`;
       ins.style.height = `${slot.height}px`;
       containerRef.current.appendChild(ins);
-
       ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
     } catch {
       console.log("Reward ad blocked");

@@ -46,6 +46,7 @@ export type Database = {
           height: number | null
           id: string
           is_enabled: boolean
+          layout_key: string | null
           slot_label: string
           slot_name: string
           updated_at: string
@@ -58,6 +59,7 @@ export type Database = {
           height?: number | null
           id?: string
           is_enabled?: boolean
+          layout_key?: string | null
           slot_label?: string
           slot_name: string
           updated_at?: string
@@ -70,6 +72,7 @@ export type Database = {
           height?: number | null
           id?: string
           is_enabled?: boolean
+          layout_key?: string | null
           slot_label?: string
           slot_name?: string
           updated_at?: string

@@ -27,6 +27,8 @@ export default function AdminAdManager() {
         width: slot.width,
         height: slot.height,
         slot_label: slot.slot_label,
+        ad_type: slot.ad_type,
+        layout_key: (slot as any).layout_key || "",
       })
       .eq("id", slot.id);
 
@@ -153,45 +155,43 @@ export default function AdminAdManager() {
               </div>
 
               {slot.ad_type !== "popunder" && (
-                <div className="flex gap-2">
-                  <div className="flex-1">
-                    <label className="text-[10px] font-bold uppercase text-muted-foreground tracking-wider mb-1 block">Format</label>
+                <div className="space-y-2">
+                  <div>
+                    <label className="text-[10px] font-bold uppercase text-muted-foreground tracking-wider mb-1 block">Ad Format</label>
                     <select
-                      value={slot.ad_type === "responsive" ? "responsive" : "fixed"}
-                      onChange={(e) => {
-                        if (e.target.value === "responsive") {
-                          handleFieldChange(slot.id, "ad_type", "responsive");
-                        } else {
-                          handleFieldChange(slot.id, "ad_type", "banner");
-                        }
-                      }}
+                      value={slot.ad_type}
+                      onChange={(e) => handleFieldChange(slot.id, "ad_type", e.target.value)}
                       className="w-full bg-foreground/[0.04] border border-white/[0.08] rounded-lg px-3 py-2 text-sm text-foreground outline-none focus:border-primary/50 transition-colors"
                     >
-                      <option value="responsive">Auto (Responsive)</option>
-                      <option value="fixed">Fixed Size</option>
+                      <option value="display">Display (Auto/Responsive)</option>
+                      <option value="in-feed">In-feed (Fluid)</option>
+                      <option value="in-article">In-article (Fluid)</option>
+                      <option value="multiplex">Multiplex (Auto Relaxed)</option>
+                      <option value="banner">Fixed Size Banner</option>
                     </select>
                   </div>
-                  {slot.ad_type !== "responsive" && (
-                    <>
+                  {slot.ad_type === "in-feed" && (
+                    <div>
+                      <label className="text-[10px] font-bold uppercase text-muted-foreground tracking-wider mb-1 block">Layout Key</label>
+                      <input
+                        value={(slot as any).layout_key || ""}
+                        onChange={(e) => handleFieldChange(slot.id, "layout_key" as any, e.target.value)}
+                        placeholder="e.g. -6t+ed+2i-1n-4w"
+                        className="w-full bg-foreground/[0.04] border border-white/[0.08] rounded-lg px-3 py-2 text-sm text-foreground outline-none focus:border-primary/50 transition-colors font-mono"
+                      />
+                    </div>
+                  )}
+                  {slot.ad_type === "banner" && (
+                    <div className="flex gap-2">
                       <div className="flex-1">
                         <label className="text-[10px] font-bold uppercase text-muted-foreground tracking-wider mb-1 block">Width</label>
-                        <input
-                          type="number"
-                          value={slot.width}
-                          onChange={(e) => handleFieldChange(slot.id, "width", parseInt(e.target.value) || 0)}
-                          className="w-full bg-foreground/[0.04] border border-white/[0.08] rounded-lg px-3 py-2 text-sm text-foreground outline-none focus:border-primary/50 transition-colors tabular-nums"
-                        />
+                        <input type="number" value={slot.width} onChange={(e) => handleFieldChange(slot.id, "width", parseInt(e.target.value) || 0)} className="w-full bg-foreground/[0.04] border border-white/[0.08] rounded-lg px-3 py-2 text-sm text-foreground outline-none focus:border-primary/50 transition-colors tabular-nums" />
                       </div>
                       <div className="flex-1">
                         <label className="text-[10px] font-bold uppercase text-muted-foreground tracking-wider mb-1 block">Height</label>
-                        <input
-                          type="number"
-                          value={slot.height}
-                          onChange={(e) => handleFieldChange(slot.id, "height", parseInt(e.target.value) || 0)}
-                          className="w-full bg-foreground/[0.04] border border-white/[0.08] rounded-lg px-3 py-2 text-sm text-foreground outline-none focus:border-primary/50 transition-colors tabular-nums"
-                        />
+                        <input type="number" value={slot.height} onChange={(e) => handleFieldChange(slot.id, "height", parseInt(e.target.value) || 0)} className="w-full bg-foreground/[0.04] border border-white/[0.08] rounded-lg px-3 py-2 text-sm text-foreground outline-none focus:border-primary/50 transition-colors tabular-nums" />
                       </div>
-                    </>
+                    </div>
                   )}
                 </div>
               )}
