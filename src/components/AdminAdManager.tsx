@@ -27,6 +27,8 @@ export default function AdminAdManager() {
         width: slot.width,
         height: slot.height,
         slot_label: slot.slot_label,
+        ad_type: slot.ad_type,
+        layout_key: (slot as any).layout_key || "",
       })
       .eq("id", slot.id);
 
