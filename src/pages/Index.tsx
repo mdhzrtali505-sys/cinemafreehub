@@ -135,6 +135,10 @@ export default function Index() {
       <Navbar onSearch={handleSearch} onHomeClick={goHome} />
 
       <div className="pt-[70px]">
+        <div className="flex justify-center my-3 px-[4%]">
+          <AdSlotBanner slotName="banner_top" className="rounded-xl" />
+        </div>
+
         {!showGrid && (
           <div className="mt-5">
             <HeroSlider
@@ -144,6 +148,12 @@ export default function Index() {
               watchlist={watchlist}
               onToggleWatchlist={toggleWatchlist}
             />
+          </div>
+        )}
+
+        {!showGrid && (
+          <div className="flex justify-center my-4 px-[4%]">
+            <AdSlotBanner slotName="hero_below" className="rounded-xl" />
           </div>
         )}
 
@@ -199,6 +209,9 @@ export default function Index() {
             <ContentRow title="📺 Trending TV Shows" icon={<Tv className="w-5 h-5 text-primary" />} movies={tvTrending} watchlist={watchlist} onPlay={handlePlay} onToggleWatchlist={toggleWatchlist} onSeeAll={() => handleSeeAll("📺 Trending TV Shows", tvTrending)} />
             <ContentRow title="🍿 Popular Movies" icon={<Sparkles className="w-5 h-5 text-primary" />} movies={popular} watchlist={watchlist} onPlay={handlePlay} onToggleWatchlist={toggleWatchlist} onSeeAll={() => handleSeeAll("🍿 Popular Movies", popular)} />
             <ContentRow title="🎥 Upcoming" icon={<Globe className="w-5 h-5 text-primary" />} movies={upcoming} watchlist={watchlist} onPlay={handlePlay} onToggleWatchlist={toggleWatchlist} onSeeAll={() => handleSeeAll("🎥 Upcoming", upcoming)} />
+            <div className="flex justify-center my-6">
+              <AdSlotBanner slotName="sidebar_sticky" className="rounded-xl" />
+            </div>
           </div>
         )}
       </div>
