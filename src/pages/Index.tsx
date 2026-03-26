@@ -135,6 +135,10 @@ export default function Index() {
       <Navbar onSearch={handleSearch} onHomeClick={goHome} />
 
       <div className="pt-[70px]">
+        <div className="flex justify-center my-3 px-[4%]">
+          <AdSlotBanner slotName="banner_top" className="rounded-xl" />
+        </div>
+
         {!showGrid && (
           <div className="mt-5">
             <HeroSlider
