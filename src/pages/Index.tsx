@@ -209,6 +209,9 @@ export default function Index() {
             <ContentRow title="📺 Trending TV Shows" icon={<Tv className="w-5 h-5 text-primary" />} movies={tvTrending} watchlist={watchlist} onPlay={handlePlay} onToggleWatchlist={toggleWatchlist} onSeeAll={() => handleSeeAll("📺 Trending TV Shows", tvTrending)} />
             <ContentRow title="🍿 Popular Movies" icon={<Sparkles className="w-5 h-5 text-primary" />} movies={popular} watchlist={watchlist} onPlay={handlePlay} onToggleWatchlist={toggleWatchlist} onSeeAll={() => handleSeeAll("🍿 Popular Movies", popular)} />
             <ContentRow title="🎥 Upcoming" icon={<Globe className="w-5 h-5 text-primary" />} movies={upcoming} watchlist={watchlist} onPlay={handlePlay} onToggleWatchlist={toggleWatchlist} onSeeAll={() => handleSeeAll("🎥 Upcoming", upcoming)} />
+            <div className="flex justify-center my-6">
+              <AdSlotBanner slotName="sidebar_sticky" className="rounded-xl" />
+            </div>
           </div>
         )}
       </div>
