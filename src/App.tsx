@@ -7,6 +7,8 @@ import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import SecureGateway from "./pages/SecureGateway.tsx";
 import AdminDashboard from "./pages/AdminDashboard.tsx";
+import MovieDetail from "./pages/MovieDetail.tsx";
+import CategoryPage from "./pages/CategoryPage.tsx";
 
 const queryClient = new QueryClient();
 
@@ -18,6 +20,8 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/:type/:id" element={<MovieDetail />} />
+          <Route path="/category/:category" element={<CategoryPage />} />
           <Route path="/pf-ctrl-9x7k" element={<SecureGateway />} />
           <Route path="/pf-ctrl-9x7k/dashboard" element={<AdminDashboard />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
