@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import CinemaLogo from "./CinemaLogo";
 
 export default function Footer() {
@@ -13,34 +14,34 @@ export default function Footer() {
             <h3 className="text-sm font-bold text-foreground mb-3">Popular Categories</h3>
             <nav aria-label="Movie categories">
               <ul className="space-y-1.5 text-sm text-muted-foreground">
-                <li><span className="hover:text-foreground transition-colors cursor-pointer">Trending Movies</span></li>
-                <li><span className="hover:text-foreground transition-colors cursor-pointer">Top Rated Movies</span></li>
-                <li><span className="hover:text-foreground transition-colors cursor-pointer">TV Shows</span></li>
-                <li><span className="hover:text-foreground transition-colors cursor-pointer">Bangla Movies & Natok</span></li>
-                <li><span className="hover:text-foreground transition-colors cursor-pointer">Upcoming Movies</span></li>
+                <li><Link to="/category/hollywood" className="hover:text-foreground transition-colors">Hollywood Movies ফ্রি</Link></li>
+                <li><Link to="/category/top-rated" className="hover:text-foreground transition-colors">Top Rated Movies</Link></li>
+                <li><Link to="/category/tv-shows" className="hover:text-foreground transition-colors">TV Shows ফ্রি দেখুন</Link></li>
+                <li><Link to="/category/bangla-movie" className="hover:text-foreground transition-colors">বাংলা মুভি ফ্রি দেখুন</Link></li>
+                <li><Link to="/category/bangla-natok" className="hover:text-foreground transition-colors">বাংলা নাটক ও সিরিজ</Link></li>
               </ul>
             </nav>
           </section>
 
           <section>
-            <h3 className="text-sm font-bold text-foreground mb-3">Genres</h3>
-            <nav aria-label="Movie genres">
+            <h3 className="text-sm font-bold text-foreground mb-3">জনপ্রিয় কীওয়ার্ড</h3>
+            <nav aria-label="SEO keywords">
               <ul className="space-y-1.5 text-sm text-muted-foreground">
-                <li><span className="hover:text-foreground transition-colors cursor-pointer">Action & Adventure</span></li>
-                <li><span className="hover:text-foreground transition-colors cursor-pointer">Comedy</span></li>
-                <li><span className="hover:text-foreground transition-colors cursor-pointer">Drama & Romance</span></li>
-                <li><span className="hover:text-foreground transition-colors cursor-pointer">Horror & Thriller</span></li>
-                <li><span className="hover:text-foreground transition-colors cursor-pointer">Sci-Fi & Fantasy</span></li>
+                <li><span>HD মুভি অনলাইন ২০২৬</span></li>
+                <li><span>Hollywood bangla dubbed</span></li>
+                <li><span>নতুন মুভি ডাউনলোড</span></li>
+                <li><span>বাংলা সিনেমা অনলাইন</span></li>
+                <li><span>Free movie streaming HD</span></li>
               </ul>
             </nav>
           </section>
 
           <section className="sm:col-span-2 lg:col-span-1">
-            <h3 className="text-sm font-bold text-foreground mb-3">About CinemaFreeHub</h3>
+            <h3 className="text-sm font-bold text-foreground mb-3">CinemaFreeHub সম্পর্কে</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              CinemaFreeHub is your free online destination to watch movies and TV shows in HD quality. 
-              Stream trending Hollywood blockbusters, Bangla movies, natok, and TV series — all for free. 
-              Enjoy unlimited entertainment with no subscription required.
+              CinemaFreeHub-এ বাংলা, হিন্দি ও Hollywood মুভি এবং TV shows সম্পূর্ণ ফ্রিতে HD quality-তে দেখুন। 
+              বাংলা মুভি ফ্রি দেখুন, নতুন মুভি ২০২৬, Hollywood bangla dubbed মুভি — সবকিছু এক জায়গায়। 
+              কোনো সাবস্ক্রিপশন ছাড়াই আনলিমিটেড এন্টারটেইনমেন্ট উপভোগ করুন।
             </p>
           </section>
         </div>
